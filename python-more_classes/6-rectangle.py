@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module defines a Rectangle class for a rectangle."""
 
-
 class Rectangle:
     """This class defines a rectangle with validated dimensions."""
 
@@ -19,6 +18,7 @@ class Rectangle:
         Rectangle.number_of_instances += 1
 
     @property
+
     def width(self):
         """Retrieve the width of the rectangle.
 
@@ -28,6 +28,7 @@ class Rectangle:
         return self.__width
 
     @width.setter
+
     def width(self, value):
         """Set the width of the rectangle with validation.
 
@@ -41,6 +42,7 @@ class Rectangle:
         self.__width = value
 
     @property
+
     def height(self):
         """Retrieve the height of the rectangle.
 
@@ -50,6 +52,7 @@ class Rectangle:
         return self.__height
 
     @height.setter
+
     def height(self, value):
         """Set the height of the rectangle with validation.
 
