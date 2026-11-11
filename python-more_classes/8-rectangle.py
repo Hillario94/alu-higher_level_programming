@@ -1,43 +1,26 @@
 #!/usr/bin/python3
-"""This module defines a Rectangle class for a rectangle."""
-
+"""Define a Rectangle class."""
 
 class Rectangle:
-    """This class defines a rectangle with validated dimensions."""
+    """Define a rectangle."""
 
     number_of_instances = 0
-
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """Initialize a Rectangle instance with width and height.
-
-        Args:
-            width (int): The width of the rectangle, must be >= 0.
-            height (int): The height of the rectangle, must be >= 0.
-        """
+        """Initialize rectangle."""
         self.width = width
         self.height = height
         Rectangle.number_of_instances += 1
 
     @property
-
     def width(self):
-        """Retrieve the width of the rectangle.
-
-        Returns:
-            The current width of the rectangle.
-        """
+        """Retrieve width."""
         return self.__width
 
     @width.setter
-
     def width(self, value):
-        """Set the width of the rectangle with validation.
-
-        Args:
-            value (int): The new width to set, must be >= 0.
-        """
+        """Set width."""
         if type(value) is not int:
             raise TypeError("width must be an integer")
         if value < 0:
@@ -45,23 +28,13 @@ class Rectangle:
         self.__width = value
 
     @property
-
     def height(self):
-        """Retrieve the height of the rectangle.
-
-        Returns:
-            The current height of the rectangle.
-        """
+        """Retrieve height."""
         return self.__height
 
     @height.setter
-
     def height(self, value):
-        """Set the height of the rectangle with validation.
-
-        Args:
-            value (int): The new height to set, must be >= 0.
-        """
+        """Set height."""
         if type(value) is not int:
             raise TypeError("height must be an integer")
         if value < 0:
@@ -69,55 +42,35 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        """Return the current area of the rectangle.
-
-        Returns:
-            The area computed as width times height.
-        """
+        """Return area."""
         return self.__width * self.__height
 
     def perimeter(self):
-        """Return the current perimeter of the rectangle.
-
-        Returns:
-            The perimeter, or 0 if width or height is 0.
-        """
+        """Return perimeter."""
         if self.__width == 0 or self.__height == 0:
             return 0
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Return a string representation of the rectangle with print_symbol.
-
-        Returns:
-            The rectangle drawn with print_symbol or an empty string.
-        """
+        """Return string with print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
-        return "\n".join([str(self.print_symbol) * self.__width for _ in range(self.__height)])
+        return "\n".join(
+            [str(self.print_symbol) * self.__width
+             for _ in range(self.__height)])
 
     def __repr__(self):
-        """Return a string that can recreate the rectangle with eval.
-
-        Returns:
-            A string like Rectangle(width, height).
-        """
+        """Return eval-able string."""
         return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __del__(self):
-        """Print a message when a Rectangle instance is deleted."""
+        """Print on deletion."""
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
 
     @staticmethod
-
     def bigger_or_equal(rect_1, rect_2):
-        """Return the biggest rectangle based on area.
-
-        Args:
-            rect_1: The first rectangle to compare.
-            rect_2: The second rectangle to compare.
-        """
+        """Return biggest rectangle by area."""
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
