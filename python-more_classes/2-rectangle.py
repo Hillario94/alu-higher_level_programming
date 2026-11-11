@@ -14,6 +14,7 @@ class Rectangle:
         """
         self.width = width
         self.height = height
+
     @property
     def width(self):
         """Retrieve the width of the rectangle.
@@ -35,6 +36,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("width must be >= 0")
         self.__width = value
+
     @property
     def height(self):
         """Retrieve the height of the rectangle.
@@ -56,6 +58,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
     def area(self):
         """Return the current area of the rectangle.
 
@@ -63,6 +66,7 @@ class Rectangle:
             The area computed as width times height.
         """
         return self.__width * self.__height
+
     def perimeter(self):
         """Return the current perimeter of the rectangle.
 
