@@ -14,11 +14,13 @@ class Rectangle:
         Rectangle.number_of_instances += 1
 
     @property
+
     def width(self):
         """Retrieve width."""
         return self.__width
 
     @width.setter
+
     def width(self, value):
         """Set width."""
         if type(value) is not int:
@@ -28,11 +30,13 @@ class Rectangle:
         self.__width = value
 
     @property
+
     def height(self):
         """Retrieve height."""
         return self.__height
 
     @height.setter
+
     def height(self, value):
         """Set height."""
         if type(value) is not int:
@@ -69,6 +73,7 @@ class Rectangle:
         print("Bye rectangle...")
 
     @staticmethod
+
     def bigger_or_equal(rect_1, rect_2):
         """Return biggest rectangle by area."""
         if not isinstance(rect_1, Rectangle):
