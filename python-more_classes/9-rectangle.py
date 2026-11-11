@@ -5,7 +5,6 @@ class Rectangle:
     """This class defines a rectangle with validated dimensions."""
 
     number_of_instances = 0
-
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
@@ -20,7 +19,6 @@ class Rectangle:
         Rectangle.number_of_instances += 1
 
     @property
-
     def width(self):
         """Retrieve the width of the rectangle.
 
@@ -30,7 +28,6 @@ class Rectangle:
         return self.__width
 
     @width.setter
-
     def width(self, value):
         """Set the width of the rectangle with validation.
 
@@ -44,7 +41,6 @@ class Rectangle:
         self.__width = value
 
     @property
-
     def height(self):
         """Retrieve the height of the rectangle.
 
@@ -54,7 +50,6 @@ class Rectangle:
         return self.__height
 
     @height.setter
-
     def height(self, value):
         """Set the height of the rectangle with validation.
 
@@ -86,14 +81,16 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Return a string representation of the rectangle with print_symbol.
+        """Return a string representation with print_symbol.
 
         Returns:
-            The rectangle drawn with print_symbol or an empty string.
+            The rectangle drawn with print_symbol or empty string.
         """
         if self.__width == 0 or self.__height == 0:
             return ""
-        return "\n".join([str(self.print_symbol) * self.__width for _ in range(self.__height)])
+        return "\n".join(
+            [str(self.print_symbol) * self.__width
+             for _ in range(self.__height)])
 
     def __repr__(self):
         """Return a string that can recreate the rectangle with eval.
@@ -109,7 +106,6 @@ class Rectangle:
         print("Bye rectangle...")
 
     @staticmethod
-
     def bigger_or_equal(rect_1, rect_2):
         """Return the biggest rectangle based on area.
 
@@ -126,7 +122,6 @@ class Rectangle:
         return rect_2
 
     @classmethod
-
     def square(cls, size=0):
         """Return a new Rectangle with width and height equal to size.
 
