@@ -14,7 +14,11 @@ class Student:
         """Return a dictionary representation of a Student instance."""
         if isinstance(attrs, list):
             if all(isinstance(a, str) for a in attrs):
-                return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
+                new_dict = {}
+                for k in attrs:
+                    if hasattr(self, k):
+                        new_dict[k] = getattr(self, k)
+                return new_dict
         return self.__dict__
 
     def reload_from_json(self, json):
