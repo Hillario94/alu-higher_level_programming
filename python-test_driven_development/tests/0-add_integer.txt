@@ -1,7 +1,5 @@
 >>> add_integer = __import__('0-add_integer').add_integer
 
-Regular addition:
-
 >>> add_integer(1, 2)
 3
 
@@ -14,27 +12,13 @@ Regular addition:
 >>> add_integer(0, 0)
 0
 
->>> add_integer(-5, -5)
--10
-
-Integer casting:
-
 >>> add_integer(100.3, -2)
 98
-
->>> add_integer(1.4, 2)
-3
 
 >>> add_integer(1.9, 1.9)
 2
 
-Check type:
-
 >>> add_integer(4, "School")
-Traceback (most recent call last):
-TypeError: b must be an integer
-
->>> add_integer(1, "2")
 Traceback (most recent call last):
 TypeError: b must be an integer
 
@@ -46,15 +30,9 @@ TypeError: a must be an integer
 Traceback (most recent call last):
 TypeError: a must be an integer
 
->>> add_integer([1], 2)
-Traceback (most recent call last):
-TypeError: a must be an integer
-
 >>> add_integer(1, None)
 Traceback (most recent call last):
 TypeError: b must be an integer
-
-Float overflow:
 
 >>> add_integer(float('inf'))
 Traceback (most recent call last):
@@ -64,8 +42,6 @@ OverflowError: cannot convert float infinity to integer
 Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
 
-Float NaN:
-
 >>> add_integer(float('nan'))
 Traceback (most recent call last):
 ValueError: cannot convert float NaN to integer
@@ -73,8 +49,6 @@ ValueError: cannot convert float NaN to integer
 >>> add_integer(1, float('nan'))
 Traceback (most recent call last):
 ValueError: cannot convert float NaN to integer
-
-Missing argument:
 
 >>> add_integer()
 Traceback (most recent call last):

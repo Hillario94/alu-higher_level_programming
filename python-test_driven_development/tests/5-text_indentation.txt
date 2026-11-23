@@ -12,6 +12,10 @@ Note:
 this works.
 <BLANKLINE>
 
+>>> text_indentation("  Spaces around.  ")
+Spaces around.
+<BLANKLINE>
+
 >>> text_indentation(5)
 Traceback (most recent call last):
 TypeError: text must be a string
