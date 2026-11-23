@@ -155,5 +155,26 @@ class TestBase(unittest.TestCase):
         self.assertEqual(str(out[1]), "[Square] (6) 9/1 - 7")
 
 
+    def test_save_squares_base(self):
+        """Test Square.save_to_file with one square."""
+        s1 = Square(5)
+        Square.save_to_file([s1])
+        with open("Square.json", "r") as f:
+            data = Base.from_json_string(f.read())
+        self.assertEqual(data, [s1.to_dictionary()])
+
+    def test_save_empty_list_base(self):
+        """Test Square.save_to_file with an empty list."""
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_none_base(self):
+        """Test Square.save_to_file with None."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+
 if __name__ == "__main__":
     unittest.main()
