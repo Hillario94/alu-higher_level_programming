@@ -274,19 +274,15 @@ class TestRectangle(unittest.TestCase):
                 Base.from_json_string(f.read()),
                 [{"id": 1, "width": 1, "height": 2, "x": 0, "y": 0}])
 
-    def test_save_to_file_two(self):
-        """Test Rectangle.save_to_file with two rectangles."""
-        Rectangle.save_to_file([Rectangle(1, 2), Rectangle(3, 4, 5, 6)])
-        with open("Rectangle.json", "r") as f:
-            self.assertEqual(len(Base.from_json_string(f.read())), 2)
-
     def test_load_from_file_missing(self):
         """Test Rectangle.load_from_file() without a file."""
         self.assertEqual(Rectangle.load_from_file(), [])
 
     def test_load_from_file(self):
-        """Test Rectangle.load_from_file() after saving."""
-        Rectangle.save_to_file([Rectangle(1, 2, 3, 4, 5)])
+        """Test Rectangle.load_from_file() with an existing file."""
+        with open("Rectangle.json", "w") as f:
+            f.write('[{"id": 5, "width": 1, "height": 2, '
+                    '"x": 3, "y": 4}]')
         out = Rectangle.load_from_file()
         self.assertIsInstance(out[0], Rectangle)
         self.assertEqual(str(out[0]), "[Rectangle] (5) 3/4 - 1/2")

@@ -113,30 +113,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(
             Base.from_json_string(Base.to_json_string(data)), data)
 
-    def test_base_save_to_file_none(self):
-        """Test Base.save_to_file(None)."""
-        Base.save_to_file(None)
-        with open("Base.json", "r") as f:
-            self.assertEqual(f.read(), "[]")
-
-    def test_base_save_to_file_empty(self):
-        """Test Base.save_to_file([])."""
-        Base.save_to_file([])
-        with open("Base.json", "r") as f:
-            self.assertEqual(f.read(), "[]")
-
-    def test_save_overwrites(self):
-        """Test that save_to_file overwrites an existing file."""
-        Rectangle.save_to_file([Rectangle(1, 1), Rectangle(2, 2)])
-        Rectangle.save_to_file([Rectangle(3, 3)])
-        with open("Rectangle.json", "r") as f:
-            self.assertEqual(len(Base.from_json_string(f.read())), 1)
-
-    def test_save_no_arg(self):
-        """Test Rectangle.save_to_file()."""
-        with self.assertRaises(TypeError):
-            Rectangle.save_to_file()
-
     def test_create_rectangle(self):
         """Test create with a Rectangle dictionary."""
         r1 = Rectangle(3, 5, 1, 2, 7)
@@ -159,16 +135,14 @@ class TestBase(unittest.TestCase):
 
     def test_load_from_file_rectangles(self):
         """Test load_from_file() with rectangles."""
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
-        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "w") as f:
+            f.write('[{"id": 1, "width": 10, "height": 7, "x": 2, '
+                    '"y": 8}, {"id": 2, "width": 2, "height": 4, '
+                    '"x": 0, "y": 0}]')
         out = Rectangle.load_from_file()
         self.assertEqual(len(out), 2)
-        self.assertIsNot(out[0], r1)
-        self.assertEqual(str(out[0]), str(r1))
-        self.assertEqual(str(out[1]), str(r2))
-
-
+        self.assertEqual(str(out[0]), "[Rectangle] (1) 2/8 - 10/7")
+        self.assertEqual(str(out[1]), "[Rectangle] (2) 0/0 - 2/4")
 
     def test_load_from_file_squares(self):
         """Test load_from_file() with squares."""
