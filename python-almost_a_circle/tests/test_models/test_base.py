@@ -16,7 +16,7 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         """Remove files created by the tests."""
-        for name in ("Base.json", "Rectangle.json", "Square.json"):
+        for name in ("Base.json", "Rectangle.json", "Square.json",\n                     "Rectangle.csv", "Square.csv"):
             if os.path.exists(name):
                 os.remove(name)
 
@@ -174,6 +174,40 @@ class TestBase(unittest.TestCase):
         Square.save_to_file(None)
         with open("Square.json", "r") as f:
             self.assertEqual(f.read(), "[]")
+
+
+    def test_csv_rectangles(self):
+        """Test CSV save and load with rectangles."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file_csv([r1, r2])
+        out = Rectangle.load_from_file_csv()
+        self.assertEqual(len(out), 2)
+        self.assertIsNot(out[0], r1)
+        self.assertEqual(str(out[0]), str(r1))
+        self.assertEqual(str(out[1]), str(r2))
+
+    def test_csv_squares(self):
+        """Test CSV save and load with squares."""
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        Square.save_to_file_csv([s1, s2])
+        out = Square.load_from_file_csv()
+        self.assertEqual(len(out), 2)
+        self.assertEqual(str(out[0]), str(s1))
+        self.assertEqual(str(out[1]), str(s2))
+
+    def test_csv_none_and_empty(self):
+        """Test CSV save with None and an empty list."""
+        Rectangle.save_to_file_csv(None)
+        self.assertEqual(Rectangle.load_from_file_csv(), [])
+        Square.save_to_file_csv([])
+        self.assertEqual(Square.load_from_file_csv(), [])
+
+    def test_csv_missing_file(self):
+        """Test CSV load when the file does not exist."""
+        self.assertEqual(Rectangle.load_from_file_csv(), [])
+        self.assertEqual(Square.load_from_file_csv(), [])
 
 
 if __name__ == "__main__":

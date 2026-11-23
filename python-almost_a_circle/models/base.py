@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Module that defines the Base class used to manage ids and JSON files."""
+import csv
 import json
 
 
@@ -60,3 +61,31 @@ class Base:
         except FileNotFoundError:
             return []
         return [cls.create(**d) for d in data]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Write a list of objects to a CSV file named <Class name>.csv."""
+        if cls.__name__ == "Square":
+            fields = ["id", "size", "x", "y"]
+        else:
+            fields = ["id", "width", "height", "x", "y"]
+        with open(cls.__name__ + ".csv", "w", newline="") as f:
+            writer = csv.writer(f)
+            for obj in list_objs or []:
+                data = obj.to_dictionary()
+                writer.writerow([data[k] for k in fields])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Return a list of instances loaded from <Class name>.csv."""
+        if cls.__name__ == "Square":
+            fields = ["id", "size", "x", "y"]
+        else:
+            fields = ["id", "width", "height", "x", "y"]
+        try:
+            with open(cls.__name__ + ".csv", "r", newline="") as f:
+                rows = list(csv.reader(f))
+        except FileNotFoundError:
+            return []
+        return [cls.create(**dict(zip(fields, map(int, row))))
+                for row in rows if row]
