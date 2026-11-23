@@ -203,5 +203,16 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(out[0]), "[Square] (4) 2/3 - 1")
 
 
+    def test_save_empty_list_plain(self):
+        """Test saving an empty list of squares."""
+        Square.save_to_file([])
+        self.assertTrue(os.path.exists("Square.json"))
+
+    def test_save_one_square_plain(self):
+        """Test saving a list with one square."""
+        Square.save_to_file([Square(1)])
+        self.assertTrue(os.path.exists("Square.json"))
+
+
 if __name__ == "__main__":
     unittest.main()
