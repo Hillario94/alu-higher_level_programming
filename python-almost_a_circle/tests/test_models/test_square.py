@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittests for the Square class."""
 import io
+import os
 import unittest
 from unittest.mock import patch
 from models.base import Base
@@ -183,6 +184,14 @@ class TestSquare(unittest.TestCase):
         s2.update(**s1.to_dictionary())
         self.assertEqual(str(s1), str(s2))
         self.assertNotEqual(s1, s2)
+
+
+    def test_square_save_to_file_none(self):
+        """Test Square.save_to_file(None)."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Square.json")
 
 
 if __name__ == "__main__":
