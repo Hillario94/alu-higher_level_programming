@@ -262,5 +262,108 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.width, 1)
 
 
+    def test_lit_valid_constructors(self):
+        """Test Rectangle with 2, 3, 4 and 5 valid arguments."""
+        r = Rectangle(1, 2)
+        self.assertEqual((r.width, r.height, r.x, r.y), (1, 2, 0, 0))
+        r = Rectangle(1, 2, 3)
+        self.assertEqual((r.width, r.height, r.x, r.y), (1, 2, 3, 0))
+        r = Rectangle(1, 2, 3, 4)
+        self.assertEqual((r.width, r.height, r.x, r.y), (1, 2, 3, 4))
+        r = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(r.id, 5)
+
+    def test_lit_one_arg(self):
+        """Test Rectangle(1)."""
+        with self.assertRaises(TypeError):
+            Rectangle(1)
+
+    def test_lit_no_arg(self):
+        """Test Rectangle()."""
+        with self.assertRaises(TypeError):
+            Rectangle()
+
+    def test_lit_six_args(self):
+        """Test Rectangle(1, 2, 3, 4, 5, 6)."""
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, 3, 4, 5, 6)
+
+    def test_lit_str_width(self):
+        """Test Rectangle("1", 2)."""
+        with self.assertRaises(TypeError):
+            Rectangle("1", 2)
+
+    def test_lit_str_height(self):
+        """Test Rectangle(1, "2")."""
+        with self.assertRaises(TypeError):
+            Rectangle(1, "2")
+
+    def test_lit_str_x(self):
+        """Test Rectangle(1, 2, "3")."""
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, "3")
+
+    def test_lit_str_y(self):
+        """Test Rectangle(1, 2, 3, "4")."""
+        with self.assertRaises(TypeError):
+            Rectangle(1, 2, 3, "4")
+
+    def test_lit_negative_width(self):
+        """Test Rectangle(-1, 2)."""
+        with self.assertRaises(ValueError):
+            Rectangle(-1, 2)
+
+    def test_lit_negative_height(self):
+        """Test Rectangle(1, -2)."""
+        with self.assertRaises(ValueError):
+            Rectangle(1, -2)
+
+    def test_lit_negative_x(self):
+        """Test Rectangle(1, 2, -3)."""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 2, -3)
+
+    def test_lit_negative_y(self):
+        """Test Rectangle(1, 2, 3, -4)."""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 2, 3, -4)
+
+    def test_lit_zero_width(self):
+        """Test Rectangle(0, 2)."""
+        with self.assertRaises(ValueError):
+            Rectangle(0, 2)
+
+    def test_lit_zero_height(self):
+        """Test Rectangle(1, 0)."""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 0)
+
+    def test_lit_str_method(self):
+        """Test __str__ of Rectangle."""
+        r = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(r.__str__(), "[Rectangle] (5) 3/4 - 1/2")
+
+    def test_lit_area_method(self):
+        """Test area of Rectangle."""
+        self.assertEqual(Rectangle(3, 4).area(), 12)
+
+    def test_lit_display_method(self):
+        """Test display of Rectangle."""
+        self.assertEqual(capture(Rectangle(2, 2).display), "##\n##\n")
+
+    def test_lit_update_method(self):
+        """Test update of Rectangle."""
+        r = Rectangle(1, 1)
+        r.update(9, 8, 7, 6, 5)
+        self.assertEqual(r.to_dictionary(),
+                         {"id": 9, "width": 8, "height": 7, "x": 6, "y": 5})
+
+    def test_lit_to_dictionary_method(self):
+        """Test to_dictionary of Rectangle."""
+        r = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(r.to_dictionary(),
+                         {"id": 5, "width": 1, "height": 2, "x": 3, "y": 4})
+
+
 if __name__ == "__main__":
     unittest.main()
