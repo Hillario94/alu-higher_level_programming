@@ -12,7 +12,7 @@ if __name__ == "__main__":
         pool_pre_ping=True)
     session = Session(engine)
     state = session.query(State).filter(
-        State.name == sys.argv[4]).order_by(State.id).first()
+        State.name.op("= BINARY")(sys.argv[4])).order_by(State.id).first()
     if state is None:
         print("Not found")
     else:
