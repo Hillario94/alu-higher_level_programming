@@ -194,5 +194,14 @@ class TestSquare(unittest.TestCase):
         os.remove("Square.json")
 
 
+    def test_load_from_file(self):
+        """Test Square.load_from_file() with an existing file."""
+        with open("Square.json", "w") as f:
+            f.write('[{"id": 4, "size": 1, "x": 2, "y": 3}]')
+        out = Square.load_from_file()
+        self.assertIsInstance(out[0], Square)
+        self.assertEqual(str(out[0]), "[Square] (4) 2/3 - 1")
+
+
 if __name__ == "__main__":
     unittest.main()

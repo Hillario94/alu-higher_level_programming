@@ -168,15 +168,17 @@ class TestBase(unittest.TestCase):
         self.assertEqual(str(out[0]), str(r1))
         self.assertEqual(str(out[1]), str(r2))
 
+
+
     def test_load_from_file_squares(self):
         """Test load_from_file() with squares."""
-        s1 = Square(5)
-        s2 = Square(7, 9, 1)
-        Square.save_to_file([s1, s2])
+        with open("Square.json", "w") as f:
+            f.write('[{"id": 5, "size": 5, "x": 0, "y": 0}, '
+                    '{"id": 6, "size": 7, "x": 9, "y": 1}]')
         out = Square.load_from_file()
         self.assertEqual(len(out), 2)
-        self.assertEqual(str(out[0]), str(s1))
-        self.assertEqual(str(out[1]), str(s2))
+        self.assertEqual(str(out[0]), "[Square] (5) 0/0 - 5")
+        self.assertEqual(str(out[1]), "[Square] (6) 9/1 - 7")
 
 
 if __name__ == "__main__":
