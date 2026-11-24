@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""This module defines a Square class with validated size attribute."""
+"""Module that defines a Square class with a validated size."""
+
 
 class Square:
-    """This class defines a square with a validated private size."""
+    """Class that defines a square by its private and validated size."""
 
     def __init__(self, size=0):
-        """Initialize a Square instance with an optional validated size.
-
-        Args:
-            size (int): The size of the square, must be >= 0.
-        """
+        """Initialize a new square after validating the given size."""
         if type(size) is not int:
             raise TypeError("size must be an integer")
         if size < 0:
