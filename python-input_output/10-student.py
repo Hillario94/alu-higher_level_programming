@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Module that defines a Student class with a filtered JSON output."""
+"""Module that defines a Student class.
+
+The Student class stores a first name, a last name and an age, and can
+return a dictionary description of itself for JSON serialization.
+"""
 
 
 class Student:
