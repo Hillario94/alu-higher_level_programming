@@ -16,17 +16,5 @@ class Student:
         self.age = age
 
     def to_json(self):
-        """Return the
-cd ~/alu-higher_level_programming
-mkdir -p python-input_output
-cd python-input_output
-
-cat > 0-read_file.py << 'EOF'
-#!/usr/bin/python3
-"""Module that defines a function to read a UTF8 text file."""
-
-
-def read_file(filename=""):
-    """Read a UTF8 text file and print its content to stdout."""
-    with open(filename, "r", encoding="utf-8") as f:
-        print(f.read(), end="")
+        """Return the dictionary representation of the student."""
+        return self.__dict__

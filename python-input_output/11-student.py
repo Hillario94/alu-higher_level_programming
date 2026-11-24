@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""Module that defines a Student class.
+"""Module that defines a Student class that can be saved and reloaded.
 
-The Student class stores a first name, a last name and an age, and can
-return a dictionary description of itself for JSON serialization.
+The Student class stores a first name, a last name and an age, can return
+a dictionary description of itself, and can rebuild itself from one.
 """
 
 
