@@ -1,3 +1,4 @@
-# Python Inheritance
+# Python - Inheritance
 
-This project covers inheritance, superclass, subclass, and method overriding in Python.
+Classes, subclasses and inheritance in Python, with a small geometry
+hierarchy (`BaseGeometry`, `Rectangle`, `Square`) and class checking helpers.

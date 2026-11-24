@@ -1,4 +1,5 @@
 >>> MyList = __import__('1-my_list').MyList
+
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
@@ -11,12 +12,36 @@
 [1, 2, 3, 4, 5]
 >>> print(my_list)
 [1, 4, 2, 3, 5]
->>> my_list = MyList()
->>> my_list.print_sorted()
+
+>>> empty = MyList()
+>>> empty.print_sorted()
 []
->>> my_list = MyList([3, 1, 2])
->>> my_list.print_sorted()
+
+>>> one = MyList([7])
+>>> one.print_sorted()
+[7]
+
+>>> negatives = MyList([3, -1, -5, 0])
+>>> negatives.print_sorted()
+[-5, -1, 0, 3]
+
+>>> duplicates = MyList([2, 2, 1, 1])
+>>> duplicates.print_sorted()
+[1, 1, 2, 2]
+
+>>> done = MyList([1, 2, 3])
+>>> done.print_sorted()
 [1, 2, 3]
->>> my_list = MyList([-1, 0, -5])
->>> my_list.print_sorted()
-[-5, -1, 0]
+
+>>> reverse = MyList([3, 2, 1])
+>>> reverse.print_sorted()
+[1, 2, 3]
+>>> print(reverse)
+[3, 2, 1]
+
+>>> isinstance(reverse, list)
+True
+
+>>> reverse.print_sorted(1)
+Traceback (most recent call last):
+TypeError: print_sorted() takes 1 positional argument but 2 were given
