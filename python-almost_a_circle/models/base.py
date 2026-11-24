@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that defines the Base class used to manage ids and JSON files."""
+"""Module that defines the Base class used to manage ids and files."""
 import csv
 import json
 
